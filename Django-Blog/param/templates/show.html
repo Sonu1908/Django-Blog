@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+<div class="col-12">
+    <div class="abc6">
+    {% for o in show1 %}
+        <div class="extra1">
+            <span class="pt-5 pb-3 fs-2 fam1">{{o.title}}</span>
+            <span class="pt-2 fs-5 fam1">{{o.date}}</span>
+        </div>
+
+        <div class="abc7" style="overflow:hidden;">
+            <img src="media/{{o.blog_image}}" class="extra12" alt="">
+        </div>
+        <div class="text-center pt-4">
+        <button class="btn btn-primary" href="{% url 'home' %}">Go To Home</button>
+        </div>
+    {% endfor %}
+    </div>
+    
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+
+

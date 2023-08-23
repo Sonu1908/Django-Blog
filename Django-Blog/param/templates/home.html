@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} <div class="container-fluid main"> {% endcomment %}
+<div class="container main">
+    <div class="row pt-5 pb-5">
+        <div class="col-4">
+            <div>
+                <div>
+                    <form method="GET">
+                    <div class="abc1 d-flex">
+                        <input type="search" name="query" id="search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    </form>
+                    <div class="pt-5">
+                        <div class="abc3">
+                           
+                            <h4>CATEGORIES</h4>
+                            <div class="ex1 pt-2 mb-2 pb-2"></div>
+                            <div>
+                                {% for y in cat1 %}
+                                <div class="d-flex abc2">
+                                    <h5 class="fam1">{{y.name}}</h5>
+                                    <span class="fam1">{{y.blog_count}}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        
+                        </div>
+                    </div>
+
+
+                    <div class="pt-5">
+                        <div class="abc5">
+                            
+                            <h4>RECENT POST</h4>
+                            <div class="ex1 pt-2 mb-2"></div>
+                            <div class="pt-2">
+                               {% for i in blog1 %}
+                                <div class="d-flex pt-3">
+                                    <div class="abc4" style="overflow:hidden";>
+                                        <img src="media/{{i.blog_image}}" style="width:130px;height:100px;">
+                                    </div>
+                                    <div class="ps-2">
+                                        <h5 class="fam1">{{i.title}}</h5>
+                                        <span class="fam1">{{i.date}}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% comment %} <div class="d-flex pt-3">
+                                    <div class="abc4"></div>
+                                    <div class="ps-2">
+                                        <h5 class="fam1">Da</h5>
+                                        <span class="fam1">fefjebjfbebefefef</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex pt-3">
+                                    <div class="abc4"></div>
+                                    <div class="ps-2">
+                                        <h5 class="fam1">Da</h5>
+                                        <span class="fam1">fefjebjfbebefefef</span>
+                                    </div>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="d-flex pt-3">
+                                    <div class="abc4"></div>
+                                    <div class="ps-2">
+                                        <h5>Da</h5>
+                                        <span>fefjebjfbebefefef</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex pt-3">
+                                    <div class="abc4"></div>
+                                    <div class="ps-2">
+                                        <h5>Da</h5>
+                                        <span>fefjebjfbebefefef</span>
+                                    </div>
+                                </div> {% endcomment %}
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="abc6">
+            {% for u in p_all %}
+            <div class="text-right">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary m-3" type="submit"><a class="extra70" href="{% url 'Edit' u.id %}">Edit</a></button>
+                <button class="btn btn-danger m-3" type="submit"><a class="extra70" href="{% url 'delete' u.id %}">Delete</a></button>
+                </div>
+                
+            </div>
+                <div class="extra1">
+                    <span class="pt-5 pb-3 fs-2 fam1">{{u.title}}</span>
+                    <span class="pt-2 fs-5 fam1">{{u.date}}</span>
+                </div>
+
+                <div class="abc7" style="overflow:hidden;">
+                    <img src="media/{{u.blog_image}}" class="extra12" alt="">
+                </div>
+
+                
+                
+                <div class="abc8">
+                    <p class="fs-4">{{u.content}}</p>
+                    <b><a href="{% url 'show' u.id %}" class="fam1">READ MORE</a></b>
+                </div>
+
+                <div class="abc9 pb-3">
+                    <div class="pe-5">
+                        <span class="fam1">Share With</span>
+                        <a href="#" class="fam1"><i class="fa-brands fa-facebook-f p-2 ps-3"></i></a>
+                        <a href="#" class="fam1"><i class="fa-brands fa-google-plus-g p-2"></i></a>
+                        <a href="#" class="fam1"><i class="fa-brands fa-twitter p-2"></i></a>
+                    </div>
+                </div>
+
+                <div class="abc9-1">
+                    <div class="abc10">
+                    </div>
+                    <div class="text-center pt-3">
+                        <span class="pt-5 mt-4 fs-5">Page : {{p_all.number}} / {{p_all.paginator.num_pages}}</span>
+                    </div>
+                   
+                </div>
+                
+                <div class="abc11 d-flex justify-content-center">
+                    <div>
+                        <nav aria-label="Page navigation example" class="miss1">
+                            <ul class="pagination">
+                            
+                              {% if p_all.has_previous %}
+                              <li class="page-item"><a class="page-link" href="?page={{ p_all.previous_page_number }}">Previous</a></li>
+                              {% else %}
+                              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                              {% endif %}
+
+                              {% for all in p_all.paginator.page_range %}
+                             
+                              {% if p_all.number ==  all %}
+                              <li class="page-item active"><a class="page-link" href="{% url 'home' %}?page={{ all }}">{{ all }}</a></li>
+                              {% else %}
+                              <li class="page-item"><a class="page-link" href="{% url 'home' %}?page={{all}}">{{all}}</a></li>
+                              {% endif %}
+                             
+                              {% endfor %}
+
+                              {% if p_all.has_next %}
+                              <li class="page-item"><a class="page-link" href="?page={{ p_all.next_page_number }}">Next</a></li>
+                              {% else %}
+                              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                              {% endif %}
+                            </ul>
+                          </nav>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% comment %} </div> {% endcomment %}
+
+
+
+{% endblock %}

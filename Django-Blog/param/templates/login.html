@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+{% csrf_token %}
+<div class="mb-3 w-50">
+    <label for="exampleFormControlInput1" class="form-label">Username</label>
+    <input type="username" name="username" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3 w-50">
+    <label for="exampleFormControlInput1" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+
+</form>
+{% endblock %}
